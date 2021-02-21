@@ -15,10 +15,10 @@ namespace YoutubeAV
         {
             InitializeComponent();
         }
-        private void Initial() // pouziva sa v OnMainForm_Load
+        private void Initial()
         {
             versionLabel.Text = "Verzia: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)  //check for OK
+            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)  
             {
                 MessageBox.Show("Nebol vybraný žiadny priečinok", "Chyba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
@@ -31,7 +31,7 @@ namespace YoutubeAV
 
         private void Zmenitukladanie(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)  //check for OK...they might press cancel, so don't do anything if they did.
+            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
             {
                 MessageBox.Show("Nebol vybraný žiadny priečinok");
                 return;
