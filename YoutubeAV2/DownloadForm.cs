@@ -20,7 +20,6 @@ namespace YoutubeAV
             this.Converting = converting;
             this.DeleteAfterConverting = deleteAfterConverting;
             DownloadSD();
-
         }
         CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
         CancellationToken Token = new CancellationToken();
@@ -38,7 +37,7 @@ namespace YoutubeAV
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
                 this.statusStatusLabel.Text = "Prekladanie názvu";
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(Videolink);
-                var ulozitkam = MainForm.path + "/";
+                var ulozitkam = MainForm.Path + "/";
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";
@@ -94,10 +93,10 @@ namespace YoutubeAV
                         }
                     }
                 }
-                catch (Exception ex1)
+                catch (Exception ex)
                 {
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex1.Message.ToString() + Environment.NewLine + Environment.NewLine);
-                    MessageBox.Show(newtitle, "Chyba sťahovania: " + ex1.Message.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
+                    MessageBox.Show(newtitle, "Chyba sťahovania: " + ex.Message.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                 }
             }

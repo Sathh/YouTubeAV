@@ -9,7 +9,7 @@ namespace YoutubeAV
 {
     public partial class MainForm : Form
     {
-        public static string path = "";
+        public static string Path = "";
 
         public MainForm()
         {
@@ -18,38 +18,38 @@ namespace YoutubeAV
         private void Initial()
         {
             versionLabel.Text = "Verzia: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)  
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK)  
             {
                 MessageBox.Show("Nebol vybraný žiadny priečinok", "Chyba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            path = folderBrowserDialog1.SelectedPath;
-            label2.Text = path;
+            Path = folderBrowserDialog.SelectedPath;
+            pathLabel.Text = Path;
             BringToFront();
             Activate();
         }
 
-        private void Zmenitukladanie(object sender, EventArgs e)
+        private void ChangeSavePath(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
             {
                 MessageBox.Show("Nebol vybraný žiadny priečinok");
                 return;
             }
-            path = folderBrowserDialog1.SelectedPath;
-            label2.Text = path;
+            Path = folderBrowserDialog.SelectedPath;
+            pathLabel.Text = Path;
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void OpenPathButton_Click(object sender, EventArgs e)
         {
-            Process.Start(path);
+            Process.Start(Path);
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
             if (ConnectionChecker.Connection() == false)
             {
-                MessageBox.Show("Nemáš internet!", "Nemáš internet!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nemáš pripojenie na internet!", "Nemáš pripojenie na internet!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (historyChkBox.Checked == true)
@@ -191,10 +191,10 @@ namespace YoutubeAV
                     File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
 
                 }
-                catch (Exception ex1)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("" + ex1.Message.ToString());
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex1.Message.ToString() + Environment.NewLine + Environment.NewLine);
+                    MessageBox.Show("" + ex.Message.ToString());
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
                 }
             }
             else

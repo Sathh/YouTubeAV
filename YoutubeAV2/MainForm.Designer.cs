@@ -39,7 +39,7 @@ namespace YoutubeAV
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.changeLocationButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.pathLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@ namespace YoutubeAV
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
@@ -90,7 +90,7 @@ namespace YoutubeAV
             this.openPathButton.TabIndex = 48;
             this.openPathButton.Text = "Otvoriť priečinok";
             this.openPathButton.UseVisualStyleBackColor = true;
-            this.openPathButton.Click += new System.EventHandler(this.Button3_Click);
+            this.openPathButton.Click += new System.EventHandler(this.OpenPathButton_Click);
             // 
             // checkBox2
             // 
@@ -144,15 +144,15 @@ namespace YoutubeAV
             this.changeLocationButton.TabIndex = 36;
             this.changeLocationButton.Text = "ZMENIŤ";
             this.changeLocationButton.UseVisualStyleBackColor = true;
-            this.changeLocationButton.Click += new System.EventHandler(this.Zmenitukladanie);
+            this.changeLocationButton.Click += new System.EventHandler(this.ChangeSavePath);
             // 
-            // label2
+            // pathLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 268);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 35;
+            this.pathLabel.AutoSize = true;
+            this.pathLabel.Location = new System.Drawing.Point(67, 268);
+            this.pathLabel.Name = "pathLabel";
+            this.pathLabel.Size = new System.Drawing.Size(0, 13);
+            this.pathLabel.TabIndex = 35;
             // 
             // label1
             // 
@@ -230,7 +230,7 @@ namespace YoutubeAV
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.changeLocationButton);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.textBox5);
@@ -260,7 +260,7 @@ namespace YoutubeAV
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button changeLocationButton;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label pathLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.TextBox textBox5;
@@ -268,7 +268,7 @@ namespace YoutubeAV
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

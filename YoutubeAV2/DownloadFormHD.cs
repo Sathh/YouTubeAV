@@ -39,7 +39,7 @@ namespace YoutubeAV
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
                 this.statusStatusLabel.Text = "Prekladanie názvu";
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(Videolink);
-                var ulozitkam = MainForm.path + "/";
+                var ulozitkam = MainForm.Path + "/";
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";

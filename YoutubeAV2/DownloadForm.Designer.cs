@@ -45,7 +45,7 @@ namespace YoutubeAV
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 85);
+            this.progressBar1.Location = new System.Drawing.Point(12, 90);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(477, 23);
             this.progressBar1.TabIndex = 0;
@@ -53,7 +53,7 @@ namespace YoutubeAV
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(8, 9);
+            this.nameLabel.Location = new System.Drawing.Point(8, 14);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(41, 13);
             this.nameLabel.TabIndex = 1;
@@ -62,7 +62,7 @@ namespace YoutubeAV
             // nameNameLabel
             // 
             this.nameNameLabel.AutoSize = true;
-            this.nameNameLabel.Location = new System.Drawing.Point(59, 9);
+            this.nameNameLabel.Location = new System.Drawing.Point(59, 14);
             this.nameNameLabel.Name = "nameNameLabel";
             this.nameNameLabel.Size = new System.Drawing.Size(0, 13);
             this.nameNameLabel.TabIndex = 2;
@@ -70,7 +70,7 @@ namespace YoutubeAV
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(8, 69);
+            this.statusLabel.Location = new System.Drawing.Point(8, 74);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(40, 13);
             this.statusLabel.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace YoutubeAV
             // statusStatusLabel
             // 
             this.statusStatusLabel.AutoSize = true;
-            this.statusStatusLabel.Location = new System.Drawing.Point(60, 69);
+            this.statusStatusLabel.Location = new System.Drawing.Point(60, 74);
             this.statusStatusLabel.Name = "statusStatusLabel";
             this.statusStatusLabel.Size = new System.Drawing.Size(0, 13);
             this.statusStatusLabel.TabIndex = 4;
@@ -87,7 +87,7 @@ namespace YoutubeAV
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 22);
+            this.label1.Location = new System.Drawing.Point(8, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 5;
@@ -96,7 +96,7 @@ namespace YoutubeAV
             // resolutionLabel
             // 
             this.resolutionLabel.AutoSize = true;
-            this.resolutionLabel.Location = new System.Drawing.Point(56, 22);
+            this.resolutionLabel.Location = new System.Drawing.Point(56, 27);
             this.resolutionLabel.Name = "resolutionLabel";
             this.resolutionLabel.Size = new System.Drawing.Size(0, 13);
             this.resolutionLabel.TabIndex = 6;
@@ -104,7 +104,7 @@ namespace YoutubeAV
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 35);
+            this.label2.Location = new System.Drawing.Point(8, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 7;
@@ -113,7 +113,7 @@ namespace YoutubeAV
             // durationLabel
             // 
             this.durationLabel.AutoSize = true;
-            this.durationLabel.Location = new System.Drawing.Point(59, 35);
+            this.durationLabel.Location = new System.Drawing.Point(59, 40);
             this.durationLabel.Name = "durationLabel";
             this.durationLabel.Size = new System.Drawing.Size(0, 13);
             this.durationLabel.TabIndex = 8;
@@ -121,7 +121,7 @@ namespace YoutubeAV
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 48);
+            this.label3.Location = new System.Drawing.Point(8, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 13);
             this.label3.TabIndex = 9;
@@ -130,7 +130,7 @@ namespace YoutubeAV
             // fileSizeLabel
             // 
             this.fileSizeLabel.AutoSize = true;
-            this.fileSizeLabel.Location = new System.Drawing.Point(97, 48);
+            this.fileSizeLabel.Location = new System.Drawing.Point(97, 53);
             this.fileSizeLabel.Name = "fileSizeLabel";
             this.fileSizeLabel.Size = new System.Drawing.Size(0, 13);
             this.fileSizeLabel.TabIndex = 10;
