@@ -173,17 +173,17 @@ namespace YoutubeAV
 
         private void ManualConvButton_Click(object sender, EventArgs e)
         {
-            openFileDialog1 = new OpenFileDialog
+            openFileDialog = new OpenFileDialog
             {
                 DefaultExt = "mp4",
                 Filter = "Video (*.mp4)|*.mp4|Všetky súbory (*.*)|*.*"
             };
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    string sr = openFileDialog1.FileName;
-                    Extractor.Manualextractaudio(sr);
+                    string ofdPath = openFileDialog.FileName;
+                    Extractor.ManualExtractAudio(ofdPath);
                 }
                 catch (SecurityException ex)
                 {
@@ -199,6 +199,7 @@ namespace YoutubeAV
             }
             else
             {
+                return;
             }
         }
     }

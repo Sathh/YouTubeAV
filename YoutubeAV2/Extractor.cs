@@ -13,9 +13,9 @@ namespace YoutubeAV
         {
             this.Source = source;
             this.DeleteAfterConverting = deleteAfterConverting;
-            ConversionDone = Extractaudio();
+            ConversionDone = ExtractAudio();
         }
-        public bool Extractaudio()
+        public bool ExtractAudio() //Extracting audio with ffmpeg
         {
             var inputFile = new MediaFile { Filename = Source };
             var outputFile = new MediaFile { Filename = $"{Source.Replace(".mp4", "")}.mp3" };
@@ -38,7 +38,7 @@ namespace YoutubeAV
         {
             ConversionDone = true;
         }
-        public static void Manualextractaudio(string source)
+        public static void ManualExtractAudio(string source) 
         {
             var inputFile = new MediaFile { Filename = source };
             var outputFile = new MediaFile { Filename = $"{source.Replace(".mp4", "")}.mp3" };

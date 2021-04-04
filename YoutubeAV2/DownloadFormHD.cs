@@ -32,14 +32,14 @@ namespace YoutubeAV
                 this.Show();
                 this.statusStatusLabel.Text = "Inicializácia";
                 var client = new YoutubeClient();
-                var video = await client.Videos.GetAsync(Videolink);
+                var video = await client.Videos.GetAsync(Videolink); //https://www.youtube.com/watch?v=bnsUkE8i0tU
                 var title = video.Title; // "Infected Mushroom - Spitfire [Monstercat Release]"
                 this.nameNameLabel.Text = title;
                 var invalids = System.IO.Path.GetInvalidFileNameChars();
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
                 this.statusStatusLabel.Text = "Prekladanie názvu";
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(Videolink);
-                var ulozitkam = MainForm.Path + "/";
+                var savePath = MainForm.Path + "/";
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";
@@ -47,8 +47,8 @@ namespace YoutubeAV
                     this.resolutionLabel.Text = streamInfo.Resolution.ToString();
                     this.durationLabel.Text = video.Duration.ToString();
                     this.fileSizeLabel.Text = streamInfo.Size.ToString();
-                    var ext = streamInfo.Container.Name;
-                    if (File.Exists(ulozitkam + newtitle + $".{ext}") == true)
+                    var extension = streamInfo.Container.Name;
+                    if (File.Exists(savePath + newtitle + $".{extension}") == true)
                     {
                         if (MessageBox.Show(newtitle + " už existuje !   Chceš ho stiahnuť aj tak ?", "Súbor už existuje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         {
@@ -56,7 +56,7 @@ namespace YoutubeAV
                             return;
                         }
                     }
-                    if (File.Exists(ulozitkam + newtitle + $".mp3") == true)
+                    if (File.Exists(savePath + newtitle + $".mp3") == true)
                     {
                         if (MessageBox.Show(newtitle + " už existuje !   Chceš ho stiahnuť aj tak ?", "Súbor už existuje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         {
@@ -73,7 +73,7 @@ namespace YoutubeAV
                         var rounded = Math.Round(prog, 2);
                         this.Text = "Sťahovanie " + Convert.ToString(rounded) + "%";
                     });
-                    await client.Videos.DownloadAsync(Videolink, ulozitkam + newtitle + $".{ext}", progress, cancelTokenSource.Token); // output format inferred from file extension
+                    await client.Videos.DownloadAsync(Videolink, savePath + newtitle + $".{extension}", progress, cancelTokenSource.Token); // output format inferred from file extension
                   
                     // STAHOVANIE TITULKOV
                     /*
@@ -89,7 +89,7 @@ namespace YoutubeAV
                     {
                         this.Text = "Konvertujem " + title;
                         this.statusStatusLabel.Text = "Konvertujem";
-                        var ex = await Task.Run(() => new Extractor(ulozitkam + newtitle + $".{ext}", DeleteAfterConverting));
+                        var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{extension}", DeleteAfterConverting));
                         if (ex.ConversionDone == true)
                         {
                             this.Close();
@@ -111,7 +111,7 @@ namespace YoutubeAV
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Chyba!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", DateTime.Now.ToString() + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
                 this.Close();
             }
