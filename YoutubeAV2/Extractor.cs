@@ -15,7 +15,7 @@ namespace YoutubeAV
             this.DeleteAfterConverting = deleteAfterConverting;
             ConversionDone = ExtractAudio();
         }
-        public bool ExtractAudio() //Extracting audio with ffmpeg
+        public bool ExtractAudio()
         {
             var inputFile = new MediaFile { Filename = Source };
             var outputFile = new MediaFile { Filename = $"{Source.Replace(".mp4", "")}.mp3" };

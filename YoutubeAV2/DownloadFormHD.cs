@@ -65,7 +65,6 @@ namespace YoutubeAV
                         }
                     }
                     this.statusStatusLabel.Text = "Sťahovanie";
-
                     var progress = new Progress<double>(p =>
                     {
                         progressBar1.Value = Convert.ToInt32(p * 100);
@@ -74,17 +73,6 @@ namespace YoutubeAV
                         this.Text = "Sťahovanie " + Convert.ToString(rounded) + "%";
                     });
                     await client.Videos.DownloadAsync(Videolink, savePath + newtitle + $".{extension}", progress, cancelTokenSource.Token); // output format inferred from file extension
-                  
-                    // STAHOVANIE TITULKOV
-                    /*
-                    var trackManifest = await client.Videos.ClosedCaptions.GetManifestAsync(Videolink);
-                    var trackInfo = trackManifest.TryGetByLanguage("en"); 
-                    if (trackInfo != null)
-                    {
-                        await client.Videos.ClosedCaptions.DownloadAsync(trackInfo, ulozitkam + newtitle + ".srt");
-                    }
-                    */
-
                     if (Converting == true)
                     {
                         this.Text = "Konvertujem " + title;

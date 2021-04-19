@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Security;
 using System.Windows.Forms;
@@ -10,6 +11,8 @@ namespace YoutubeAV
     public partial class MainForm : Form
     {
         public static string Path = "";
+        private static new string ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        private WebClient webClient = new WebClient();
 
         public MainForm()
         {
@@ -17,7 +20,7 @@ namespace YoutubeAV
         }
         private void Initial()
         {
-            versionLabel.Text = "Verzia: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            versionLabel.Text = "Verzia: " + ProductVersion;
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK)  
             {
                 MessageBox.Show("Nebol vybraný žiadny priečinok", "Chyba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -27,7 +30,41 @@ namespace YoutubeAV
             pathLabel.Text = Path;
             BringToFront();
             Activate();
+            if (File.Exists(@"YoutubeAVUpdater.exe") == false)
+            {
+                DownloadUpdater();
+            }
+            if (IsUpdateAvailable(ProductVersion) == true)
+            {
+                if (MessageBox.Show("Je dostupná aktualizácia.\nChceš ju sťiahnuť ?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    Process.Start("YoutubeAVUpdater.exe");
+                    Environment.Exit(0);
+                }
+            }
         }
+        private void DownloadUpdater()
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                client.DownloadFile("https://github.com/Sathh/YouTubeAV/releases/download/1.21/YoutubeAVUpdater.exe", @"YoutubeAVUpdater.exe");
+            }
+            catch { }
+        }
+        private bool IsUpdateAvailable(string ProductVersion)
+        {
+            try
+            {
+                Stream webStream = webClient.OpenRead("https://raw.githubusercontent.com/Sathh/YouTubeAV/master/YoutubeAV2/Properties/AssemblyInfo.cs".ToString());
+                string[] LatestVersionArray = new StreamReader(webStream).ReadToEnd().Split(new[] { "AssemblyFileVersion(\"" }, StringSplitOptions.None);
+                string LatestVersionNumber = LatestVersionArray[1].Substring(0, LatestVersionArray[1].Length - 4);
+                return (ProductVersion != LatestVersionNumber);
+            }
+            catch { }
+            return false;
+        }
+
 
         private void ChangeSavePath(object sender, EventArgs e)
         {
@@ -55,15 +92,15 @@ namespace YoutubeAV
             if (historyChkBox.Checked == true)
             {
                 if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrWhiteSpace(textBox1.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "   " + textBox1.Text + Environment.NewLine);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox1.Text + Environment.NewLine);
                 if (!String.IsNullOrEmpty(textBox2.Text) && !String.IsNullOrWhiteSpace(textBox2.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "   " + textBox2.Text + Environment.NewLine);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox2.Text + Environment.NewLine);
                 if (!String.IsNullOrEmpty(textBox3.Text) && !String.IsNullOrWhiteSpace(textBox3.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "   " + textBox3.Text + Environment.NewLine);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox3.Text + Environment.NewLine);
                 if (!String.IsNullOrEmpty(textBox4.Text) && !String.IsNullOrWhiteSpace(textBox4.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "   " + textBox4.Text + Environment.NewLine);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox4.Text + Environment.NewLine);
                 if (!String.IsNullOrEmpty(textBox5.Text) && !String.IsNullOrWhiteSpace(textBox5.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "   " + textBox5.Text + Environment.NewLine);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox5.Text + Environment.NewLine);
             }
 
 
