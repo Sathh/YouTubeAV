@@ -91,16 +91,20 @@ namespace YoutubeAV
             }
             if (historyChkBox.Checked == true)
             {
-                if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrWhiteSpace(textBox1.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox1.Text + Environment.NewLine);
-                if (!String.IsNullOrEmpty(textBox2.Text) && !String.IsNullOrWhiteSpace(textBox2.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox2.Text + Environment.NewLine);
-                if (!String.IsNullOrEmpty(textBox3.Text) && !String.IsNullOrWhiteSpace(textBox3.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox3.Text + Environment.NewLine);
-                if (!String.IsNullOrEmpty(textBox4.Text) && !String.IsNullOrWhiteSpace(textBox4.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox4.Text + Environment.NewLine);
-                if (!String.IsNullOrEmpty(textBox5.Text) && !String.IsNullOrWhiteSpace(textBox5.Text))
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox5.Text + Environment.NewLine);
+                try
+                {
+                    if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrWhiteSpace(textBox1.Text))
+                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox1.Text + Environment.NewLine);
+                    if (!String.IsNullOrEmpty(textBox2.Text) && !String.IsNullOrWhiteSpace(textBox2.Text))
+                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox2.Text + Environment.NewLine);
+                    if (!String.IsNullOrEmpty(textBox3.Text) && !String.IsNullOrWhiteSpace(textBox3.Text))
+                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox3.Text + Environment.NewLine);
+                    if (!String.IsNullOrEmpty(textBox4.Text) && !String.IsNullOrWhiteSpace(textBox4.Text))
+                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox4.Text + Environment.NewLine);
+                    if (!String.IsNullOrEmpty(textBox5.Text) && !String.IsNullOrWhiteSpace(textBox5.Text))
+                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox5.Text + Environment.NewLine);
+                }
+                catch { }
             }
 
 
