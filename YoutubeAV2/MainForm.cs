@@ -112,7 +112,7 @@ namespace YoutubeAV
             TextBoxClear();
 
 
-            if (radioButton1.Checked == true && checkBox1.Checked == true)
+            if (radioButton720p.Checked == true && checkBoxKeepVideo.Checked == true)
             {
                 foreach (string s in items)
                 {
@@ -124,7 +124,7 @@ namespace YoutubeAV
                 return;
             }
 
-            if (radioButton1.Checked == true && checkBox2.Checked == true)
+            if (radioButton720p.Checked == true && checkBoxOnlyVideo.Checked == true)
             {
                 foreach (string s in items)
                 {
@@ -136,7 +136,7 @@ namespace YoutubeAV
                 return;
             }
 
-            if (radioButton1.Checked == true && checkBox1.Checked == false && checkBox2.Checked == false)
+            if (radioButton720p.Checked == true && checkBoxKeepVideo.Checked == false && checkBoxOnlyVideo.Checked == false)
             {
                 foreach (string s in items)
                 {
@@ -149,41 +149,78 @@ namespace YoutubeAV
             }
 
 
-            if (radioButton2.Checked == true && checkBox1.Checked == true)
+            if (radioButtonHighest.Checked == true && checkBoxKeepVideo.Checked == true)
             {
                 foreach (string s in items)
                 {
                     if (String.IsNullOrWhiteSpace(s) == false)
                     {
-                        DownloadFormHD dfHD = new DownloadFormHD(s, true, false);
+                        DownloadFormHD dfHD = new DownloadFormHD(s, true, false, false);
                     }
                 }
                 return;
             }
 
-            if (radioButton2.Checked == true && checkBox2.Checked == true)
+            if (radioButtonHighest.Checked == true && checkBoxOnlyVideo.Checked == true)
             {
                 foreach (string s in items)
                 {
                     if (String.IsNullOrWhiteSpace(s) == false)
                     {
-                        DownloadFormHD dfHD = new DownloadFormHD(s, false, false);
+                        DownloadFormHD dfHD = new DownloadFormHD(s, false, false, false);
                     }
                 }
                 return;
             }
 
-            if (radioButton2.Checked == true && checkBox1.Checked == false && checkBox2.Checked == false)
+            if (radioButtonHighest.Checked == true && checkBoxKeepVideo.Checked == false && checkBoxOnlyVideo.Checked == false)
             {
                 foreach (string s in items)
                 {
                     if (String.IsNullOrWhiteSpace(s) == false)
                     {
-                        DownloadFormHD dfHD = new DownloadFormHD(s, true, true);
+                        DownloadFormHD dfHD = new DownloadFormHD(s, true, true, false);
                     }
                 }
                 return;
             }
+
+            if (radioButton1080p.Checked == true && checkBoxKeepVideo.Checked == true)
+            {
+                foreach (string s in items)
+                {
+                    if (String.IsNullOrWhiteSpace(s) == false)
+                    {
+                        DownloadFormHD dfHD = new DownloadFormHD(s, true, false, true);
+                    }
+                }
+                return;
+            }
+
+            if (radioButton1080p.Checked == true && checkBoxOnlyVideo.Checked == true)
+            {
+                foreach (string s in items)
+                {
+                    if (String.IsNullOrWhiteSpace(s) == false)
+                    {
+                        DownloadFormHD dfHD = new DownloadFormHD(s, false, false, true);
+                    }
+                }
+                return;
+            }
+
+            if (radioButton1080p.Checked == true && checkBoxKeepVideo.Checked == false && checkBoxOnlyVideo.Checked == false)
+            {
+                foreach (string s in items)
+                {
+                    if (String.IsNullOrWhiteSpace(s) == false)
+                    {
+                        DownloadFormHD dfHD = new DownloadFormHD(s, true, true, true);
+                    }
+                }
+                return;
+            }
+
         }
 
         private void TextBoxClear()
@@ -202,14 +239,14 @@ namespace YoutubeAV
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked == true)
-                checkBox2.Checked = false;
+            if (checkBoxOnlyVideo.Checked == true)
+                checkBoxOnlyVideo.Checked = false;
         }
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
-                checkBox1.Checked = false;
+            if (checkBoxKeepVideo.Checked == true)
+                checkBoxKeepVideo.Checked = false;
         }
 
         private void ManualConvButton_Click(object sender, EventArgs e)

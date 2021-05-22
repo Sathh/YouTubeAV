@@ -41,8 +41,8 @@ namespace YoutubeAV
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";
-                    var streamInfo = streamManifest.GetMuxed().WithHighestVideoQuality();
-                    this.resolutionLabel.Text = streamInfo.Resolution.ToString();
+                    var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+                    this.resolutionLabel.Text = streamInfo.VideoResolution.ToString();
                     this.durationLabel.Text = video.Duration.ToString();
                     this.fileSizeLabel.Text = streamInfo.Size.ToString();
                     var ext = streamInfo.Container.Name;
@@ -96,7 +96,7 @@ namespace YoutubeAV
                 catch (Exception ex)
                 {
                     File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
-                    MessageBox.Show(newtitle, "Chyba sťahovania: " + ex.Message.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Chyba sťahovania: " + ex.Message.ToString(), newtitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                 }
             }

@@ -34,10 +34,10 @@ namespace YoutubeAV
             this.historyChkBox = new System.Windows.Forms.CheckBox();
             this.manualConvButton = new System.Windows.Forms.Button();
             this.openPathButton = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.checkBoxOnlyVideo = new System.Windows.Forms.CheckBox();
+            this.checkBoxKeepVideo = new System.Windows.Forms.CheckBox();
+            this.radioButtonHighest = new System.Windows.Forms.RadioButton();
+            this.radioButton720p = new System.Windows.Forms.RadioButton();
             this.changeLocationButton = new System.Windows.Forms.Button();
             this.pathLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,12 +49,13 @@ namespace YoutubeAV
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.radioButton1080p = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // versionLabel
             // 
             this.versionLabel.AutoSize = true;
-            this.versionLabel.Location = new System.Drawing.Point(321, 330);
+            this.versionLabel.Location = new System.Drawing.Point(321, 350);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(67, 13);
             this.versionLabel.TabIndex = 51;
@@ -65,7 +66,7 @@ namespace YoutubeAV
             this.historyChkBox.AutoSize = true;
             this.historyChkBox.Checked = true;
             this.historyChkBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.historyChkBox.Location = new System.Drawing.Point(13, 317);
+            this.historyChkBox.Location = new System.Drawing.Point(13, 337);
             this.historyChkBox.Name = "historyChkBox";
             this.historyChkBox.Size = new System.Drawing.Size(149, 17);
             this.historyChkBox.TabIndex = 50;
@@ -74,7 +75,7 @@ namespace YoutubeAV
             // 
             // manualConvButton
             // 
-            this.manualConvButton.Location = new System.Drawing.Point(310, 284);
+            this.manualConvButton.Location = new System.Drawing.Point(310, 304);
             this.manualConvButton.Name = "manualConvButton";
             this.manualConvButton.Size = new System.Drawing.Size(113, 23);
             this.manualConvButton.TabIndex = 49;
@@ -84,7 +85,7 @@ namespace YoutubeAV
             // 
             // openPathButton
             // 
-            this.openPathButton.Location = new System.Drawing.Point(108, 284);
+            this.openPathButton.Location = new System.Drawing.Point(108, 304);
             this.openPathButton.Name = "openPathButton";
             this.openPathButton.Size = new System.Drawing.Size(98, 23);
             this.openPathButton.TabIndex = 48;
@@ -92,53 +93,53 @@ namespace YoutubeAV
             this.openPathButton.UseVisualStyleBackColor = true;
             this.openPathButton.Click += new System.EventHandler(this.OpenPathButton_Click);
             // 
-            // checkBox2
+            // checkBoxOnlyVideo
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(225, 238);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(113, 17);
-            this.checkBox2.TabIndex = 40;
-            this.checkBox2.Text = "Sťiahnuť len video";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.checkBoxOnlyVideo.AutoSize = true;
+            this.checkBoxOnlyVideo.Location = new System.Drawing.Point(225, 238);
+            this.checkBoxOnlyVideo.Name = "checkBoxOnlyVideo";
+            this.checkBoxOnlyVideo.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxOnlyVideo.TabIndex = 40;
+            this.checkBoxOnlyVideo.Text = "Sťiahnuť len video";
+            this.checkBoxOnlyVideo.UseVisualStyleBackColor = true;
+            this.checkBoxOnlyVideo.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
-            // checkBox1
+            // checkBoxKeepVideo
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(225, 214);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(107, 17);
-            this.checkBox1.TabIndex = 39;
-            this.checkBox1.Text = "Sťiahnuť aj video";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.checkBoxKeepVideo.AutoSize = true;
+            this.checkBoxKeepVideo.Location = new System.Drawing.Point(225, 214);
+            this.checkBoxKeepVideo.Name = "checkBoxKeepVideo";
+            this.checkBoxKeepVideo.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxKeepVideo.TabIndex = 39;
+            this.checkBoxKeepVideo.Text = "Sťiahnuť aj video";
+            this.checkBoxKeepVideo.UseVisualStyleBackColor = true;
+            this.checkBoxKeepVideo.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
-            // radioButton2
+            // radioButtonHighest
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(12, 236);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(155, 17);
-            this.radioButton2.TabIndex = 38;
-            this.radioButton2.Text = "Sťiahnuť v najvyššej kvalite";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonHighest.AutoSize = true;
+            this.radioButtonHighest.Location = new System.Drawing.Point(12, 259);
+            this.radioButtonHighest.Name = "radioButtonHighest";
+            this.radioButtonHighest.Size = new System.Drawing.Size(155, 17);
+            this.radioButtonHighest.TabIndex = 38;
+            this.radioButtonHighest.Text = "Sťiahnuť v najvyššej kvalite";
+            this.radioButtonHighest.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioButton720p
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 213);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(157, 17);
-            this.radioButton1.TabIndex = 37;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Sťiahnuť v obyčajnej kvalite";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton720p.AutoSize = true;
+            this.radioButton720p.Checked = true;
+            this.radioButton720p.Location = new System.Drawing.Point(12, 213);
+            this.radioButton720p.Name = "radioButton720p";
+            this.radioButton720p.Size = new System.Drawing.Size(212, 17);
+            this.radioButton720p.TabIndex = 37;
+            this.radioButton720p.TabStop = true;
+            this.radioButton720p.Text = "Sťiahnuť v obyčajnej kvalite (max 720p)";
+            this.radioButton720p.UseVisualStyleBackColor = true;
             // 
             // changeLocationButton
             // 
-            this.changeLocationButton.Location = new System.Drawing.Point(12, 284);
+            this.changeLocationButton.Location = new System.Drawing.Point(12, 304);
             this.changeLocationButton.Name = "changeLocationButton";
             this.changeLocationButton.Size = new System.Drawing.Size(90, 24);
             this.changeLocationButton.TabIndex = 36;
@@ -149,7 +150,7 @@ namespace YoutubeAV
             // pathLabel
             // 
             this.pathLabel.AutoSize = true;
-            this.pathLabel.Location = new System.Drawing.Point(67, 268);
+            this.pathLabel.Location = new System.Drawing.Point(67, 288);
             this.pathLabel.Name = "pathLabel";
             this.pathLabel.Size = new System.Drawing.Size(0, 13);
             this.pathLabel.TabIndex = 35;
@@ -157,7 +158,7 @@ namespace YoutubeAV
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 268);
+            this.label1.Location = new System.Drawing.Point(9, 288);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 34;
@@ -211,24 +212,36 @@ namespace YoutubeAV
             this.textBox1.Size = new System.Drawing.Size(411, 20);
             this.textBox1.TabIndex = 28;
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // radioButton1080p
+            // 
+            this.radioButton1080p.AutoSize = true;
+            this.radioButton1080p.Location = new System.Drawing.Point(12, 236);
+            this.radioButton1080p.Name = "radioButton1080p";
+            this.radioButton1080p.Size = new System.Drawing.Size(142, 17);
+            this.radioButton1080p.TabIndex = 52;
+            this.radioButton1080p.TabStop = true;
+            this.radioButton1080p.Text = "Sťiahnuť v 1080p kvalite";
+            this.radioButton1080p.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AcceptButton = this.startButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 352);
+            this.ClientSize = new System.Drawing.Size(437, 374);
+            this.Controls.Add(this.radioButton1080p);
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.historyChkBox);
             this.Controls.Add(this.manualConvButton);
             this.Controls.Add(this.openPathButton);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.checkBoxOnlyVideo);
+            this.Controls.Add(this.checkBoxKeepVideo);
+            this.Controls.Add(this.radioButtonHighest);
+            this.Controls.Add(this.radioButton720p);
             this.Controls.Add(this.changeLocationButton);
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.label1);
@@ -255,10 +268,10 @@ namespace YoutubeAV
         private System.Windows.Forms.CheckBox historyChkBox;
         private System.Windows.Forms.Button manualConvButton;
         private System.Windows.Forms.Button openPathButton;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.CheckBox checkBoxOnlyVideo;
+        private System.Windows.Forms.CheckBox checkBoxKeepVideo;
+        private System.Windows.Forms.RadioButton radioButtonHighest;
+        private System.Windows.Forms.RadioButton radioButton720p;
         private System.Windows.Forms.Button changeLocationButton;
         private System.Windows.Forms.Label pathLabel;
         private System.Windows.Forms.Label label1;
@@ -270,6 +283,7 @@ namespace YoutubeAV
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.RadioButton radioButton1080p;
     }
 }
 

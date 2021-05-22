@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,12 +15,14 @@ namespace YoutubeAV
         private string Videolink { get; set; }
         private bool Converting { get; set; }
         private bool DeleteAfterConverting { get; set; }
-        public DownloadFormHD(string videolink, bool converting, bool deleteAfterConverting)
+        private bool Only1080p { get; set; }
+        public DownloadFormHD(string videolink, bool converting, bool deleteAfterConverting, bool only1080p)
         {
             InitializeComponent();
             this.Videolink = videolink;
             this.Converting = converting;
             this.DeleteAfterConverting = deleteAfterConverting;
+            this.Only1080p = only1080p;
             DownloadHD();
         }
 
@@ -43,11 +46,18 @@ namespace YoutubeAV
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";
-                    var streamInfo = streamManifest.GetVideo().WithHighestVideoQuality();
-                    this.resolutionLabel.Text = streamInfo.Resolution.ToString();
+                    var streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4").GetWithHighestVideoQuality();
+
+                    if (Only1080p == true)
+                    {
+                        streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Height.ToString() == "1080").GetWithHighestVideoQuality();
+                    }
+
+                    this.resolutionLabel.Text = streamInfo.VideoResolution.ToString();
                     this.durationLabel.Text = video.Duration.ToString();
                     this.fileSizeLabel.Text = streamInfo.Size.ToString();
                     var extension = streamInfo.Container.Name;
+
                     if (File.Exists(savePath + newtitle + $".{extension}") == true)
                     {
                         if (MessageBox.Show(newtitle + " už existuje !   Chceš ho stiahnuť aj tak ?", "Súbor už existuje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -82,7 +92,6 @@ namespace YoutubeAV
                         {
                             this.Close();
                         }
-
                     }
                     if (Converting == false)
                     {
@@ -93,7 +102,7 @@ namespace YoutubeAV
                 catch (Exception ex)
                 {
                     File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", DateTime.Now.ToString() + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
-                    MessageBox.Show(newtitle, "Chyba sťahovania HD: " + ex.Message.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Chyba sťahovania HD: " + ex.Message.ToString(), newtitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                 }
             }
