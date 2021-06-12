@@ -36,7 +36,7 @@ namespace YoutubeAV
             }
             if (IsUpdateAvailable(ProductVersion) == true)
             {
-                if (MessageBox.Show("Je dostupná aktualizácia.\nChceš ju sťiahnuť ?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show("Je dostupná aktualizácia.\nChceš ju stiahnuť ?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     Process.Start("YoutubeAVUpdater.exe");
                     Environment.Exit(0);
@@ -271,7 +271,7 @@ namespace YoutubeAV
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("" + ex.Message.ToString());
+                    MessageBox.Show(ex.Message.ToString());
                     File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
                 }
             }

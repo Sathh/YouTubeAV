@@ -98,9 +98,9 @@ namespace YoutubeAV
             this.checkBoxOnlyVideo.AutoSize = true;
             this.checkBoxOnlyVideo.Location = new System.Drawing.Point(225, 238);
             this.checkBoxOnlyVideo.Name = "checkBoxOnlyVideo";
-            this.checkBoxOnlyVideo.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxOnlyVideo.Size = new System.Drawing.Size(112, 17);
             this.checkBoxOnlyVideo.TabIndex = 40;
-            this.checkBoxOnlyVideo.Text = "Sťiahnuť len video";
+            this.checkBoxOnlyVideo.Text = "Stiahnuť len video";
             this.checkBoxOnlyVideo.UseVisualStyleBackColor = true;
             this.checkBoxOnlyVideo.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
@@ -109,9 +109,9 @@ namespace YoutubeAV
             this.checkBoxKeepVideo.AutoSize = true;
             this.checkBoxKeepVideo.Location = new System.Drawing.Point(225, 214);
             this.checkBoxKeepVideo.Name = "checkBoxKeepVideo";
-            this.checkBoxKeepVideo.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxKeepVideo.Size = new System.Drawing.Size(106, 17);
             this.checkBoxKeepVideo.TabIndex = 39;
-            this.checkBoxKeepVideo.Text = "Sťiahnuť aj video";
+            this.checkBoxKeepVideo.Text = "Stiahnuť aj video";
             this.checkBoxKeepVideo.UseVisualStyleBackColor = true;
             this.checkBoxKeepVideo.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
@@ -120,9 +120,9 @@ namespace YoutubeAV
             this.radioButtonHighest.AutoSize = true;
             this.radioButtonHighest.Location = new System.Drawing.Point(12, 259);
             this.radioButtonHighest.Name = "radioButtonHighest";
-            this.radioButtonHighest.Size = new System.Drawing.Size(155, 17);
+            this.radioButtonHighest.Size = new System.Drawing.Size(154, 17);
             this.radioButtonHighest.TabIndex = 38;
-            this.radioButtonHighest.Text = "Sťiahnuť v najvyššej kvalite";
+            this.radioButtonHighest.Text = "Stiahnuť v najvyššej kvalite";
             this.radioButtonHighest.UseVisualStyleBackColor = true;
             // 
             // radioButton720p
@@ -131,10 +131,10 @@ namespace YoutubeAV
             this.radioButton720p.Checked = true;
             this.radioButton720p.Location = new System.Drawing.Point(12, 213);
             this.radioButton720p.Name = "radioButton720p";
-            this.radioButton720p.Size = new System.Drawing.Size(212, 17);
+            this.radioButton720p.Size = new System.Drawing.Size(211, 17);
             this.radioButton720p.TabIndex = 37;
             this.radioButton720p.TabStop = true;
-            this.radioButton720p.Text = "Sťiahnuť v obyčajnej kvalite (max 720p)";
+            this.radioButton720p.Text = "Stiahnuť v obyčajnej kvalite (max 720p)";
             this.radioButton720p.UseVisualStyleBackColor = true;
             // 
             // changeLocationButton
@@ -221,10 +221,10 @@ namespace YoutubeAV
             this.radioButton1080p.AutoSize = true;
             this.radioButton1080p.Location = new System.Drawing.Point(12, 236);
             this.radioButton1080p.Name = "radioButton1080p";
-            this.radioButton1080p.Size = new System.Drawing.Size(142, 17);
+            this.radioButton1080p.Size = new System.Drawing.Size(141, 17);
             this.radioButton1080p.TabIndex = 52;
             this.radioButton1080p.TabStop = true;
-            this.radioButton1080p.Text = "Sťiahnuť v 1080p kvalite";
+            this.radioButton1080p.Text = "Stiahnuť v 1080p kvalite";
             this.radioButton1080p.UseVisualStyleBackColor = true;
             // 
             // MainForm
