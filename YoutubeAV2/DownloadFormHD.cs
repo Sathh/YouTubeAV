@@ -35,30 +35,33 @@ namespace YoutubeAV
                 this.Show();
                 this.statusStatusLabel.Text = "Inicializácia";
                 var client = new YoutubeClient();
-                var video = await client.Videos.GetAsync(Videolink); //https://www.youtube.com/watch?v=bnsUkE8i0tU
-                var title = video.Title; // "Infected Mushroom - Spitfire [Monstercat Release]"
+                var video = await client.Videos.GetAsync(Videolink); 
+                var title = video.Title; 
                 this.nameNameLabel.Text = title;
                 var invalids = System.IO.Path.GetInvalidFileNameChars();
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
                 this.statusStatusLabel.Text = "Prekladanie názvu";
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(Videolink);
                 var savePath = MainForm.Path + "/";
+                var audioStreamInfo = streamManifest.GetAudioStreams().GetWithHighestBitrate();
+                IVideoStreamInfo videoStreamInfo;
+                if (Only1080p == true)
+                {
+                    //streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Height.ToString().Contains("1080")).GetWithHighestVideoQuality();
+                    videoStreamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Width.Equals(1920)).GetWithHighestVideoQuality();
+                }
+                else
+                {
+                    videoStreamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4").GetWithHighestVideoQuality();
+                }
+                var streamInfos = new IStreamInfo[] { audioStreamInfo, videoStreamInfo };
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";
-                    var streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4").GetWithHighestVideoQuality();
-
-                    if (Only1080p == true)
-                    {
-                        //streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Height.ToString().Contains("1080")).GetWithHighestVideoQuality();
-                        streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Width.Equals(1920)).GetWithHighestVideoQuality();
-                    }
-
-                    this.resolutionLabel.Text = streamInfo.VideoResolution.ToString();
+                    this.resolutionLabel.Text = videoStreamInfo.VideoResolution.ToString();
                     this.durationLabel.Text = video.Duration.ToString();
-                    this.fileSizeLabel.Text = streamInfo.Size.ToString();
-                    var extension = streamInfo.Container.Name;
-
+                    this.fileSizeLabel.Text = videoStreamInfo.Size.ToString();
+                    var extension = videoStreamInfo.Container.Name;
                     if (File.Exists(savePath + newtitle + $".{extension}") == true)
                     {
                         if (MessageBox.Show(newtitle + " už existuje !   Chceš ho stiahnuť aj tak ?", "Súbor už existuje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -83,7 +86,9 @@ namespace YoutubeAV
                         var rounded = Math.Round(prog, 2);
                         this.Text = "Sťahovanie " + Convert.ToString(rounded) + "%";
                     });
-                    await client.Videos.DownloadAsync(Videolink, savePath + newtitle + $".{extension}", progress, cancelTokenSource.Token); // output format inferred from file extension
+
+                    await client.Videos.DownloadAsync(streamInfos, new ConversionRequestBuilder(savePath + newtitle + $".{extension}").Build(), progress, cancelTokenSource.Token);
+                    
                     if (Converting == true)
                     {
                         this.Text = "Konvertujem " + title;
