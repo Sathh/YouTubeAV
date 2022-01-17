@@ -51,7 +51,7 @@ namespace YoutubeAV
                     if (Only1080p == true)
                     {
                         //streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Height.ToString().Contains("1080")).GetWithHighestVideoQuality();
-                        streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Width.ToString().Contains("1920")).GetWithHighestVideoQuality();
+                        streamInfo = streamManifest.GetVideoOnlyStreams().Where(s => s.Container.Name.ToString() == "mp4" && s.VideoResolution.Width.Equals(1920)).GetWithHighestVideoQuality();
                     }
 
                     this.resolutionLabel.Text = streamInfo.VideoResolution.ToString();
