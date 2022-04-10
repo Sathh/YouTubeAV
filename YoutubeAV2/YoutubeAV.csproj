@@ -256,11 +256,11 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="YoutubeExplode, Version=6.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YoutubeExplode.6.0.7\lib\net461\YoutubeExplode.dll</HintPath>
+    <Reference Include="YoutubeExplode, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YoutubeExplode.6.1.0\lib\net461\YoutubeExplode.dll</HintPath>
     </Reference>
-    <Reference Include="YoutubeExplode.Converter, Version=6.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YoutubeExplode.Converter.6.0.7\lib\net461\YoutubeExplode.Converter.dll</HintPath>
+    <Reference Include="YoutubeExplode.Converter, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YoutubeExplode.Converter.6.1.0\lib\net461\YoutubeExplode.Converter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
