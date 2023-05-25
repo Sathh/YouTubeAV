@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -21,5 +21,5 @@ using System.Runtime.InteropServices;
 //      Build Version
 //      Month
 //      Day of month
-[assembly: AssemblyVersion("1.23.5.10")]
-[assembly: AssemblyFileVersion("1.23.5.10")]
+[assembly: AssemblyVersion("1.23.5.25")]
+[assembly: AssemblyFileVersion("1.23.5.25")]
