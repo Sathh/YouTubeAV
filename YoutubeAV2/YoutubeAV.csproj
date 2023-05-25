@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Costura.Fody.5.3.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.5.3.0\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -65,8 +65,8 @@
     <Reference Include="AngleSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.1.0.1\lib\net472\AngleSharp.dll</HintPath>
     </Reference>
-    <Reference Include="CliWrap, Version=3.6.1.0, Culture=neutral, PublicKeyToken=1c4a4fc2d6886e5a, processorArchitecture=MSIL">
-      <HintPath>..\packages\CliWrap.3.6.1\lib\net462\CliWrap.dll</HintPath>
+    <Reference Include="CliWrap, Version=3.6.3.0, Culture=neutral, PublicKeyToken=1c4a4fc2d6886e5a, processorArchitecture=MSIL">
+      <HintPath>..\packages\CliWrap.3.6.3\lib\net462\CliWrap.dll</HintPath>
     </Reference>
     <Reference Include="Costura, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.5.3.0\lib\netstandard1.0\Costura.dll</HintPath>
@@ -255,11 +255,11 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="YoutubeExplode, Version=6.2.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YoutubeExplode.6.2.14\lib\net461\YoutubeExplode.dll</HintPath>
+    <Reference Include="YoutubeExplode, Version=6.2.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YoutubeExplode.6.2.15\lib\net461\YoutubeExplode.dll</HintPath>
     </Reference>
-    <Reference Include="YoutubeExplode.Converter, Version=6.2.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YoutubeExplode.Converter.6.2.14\lib\net461\YoutubeExplode.Converter.dll</HintPath>
+    <Reference Include="YoutubeExplode.Converter, Version=6.2.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YoutubeExplode.Converter.6.2.15\lib\net461\YoutubeExplode.Converter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
