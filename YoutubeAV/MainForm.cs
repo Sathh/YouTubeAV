@@ -56,7 +56,7 @@ namespace YoutubeAV
         {
             try
             {
-                Stream webStream = webClient.OpenRead("https://raw.githubusercontent.com/Sathh/YouTubeAV/master/YoutubeAV2/Properties/AssemblyInfo.cs".ToString());
+                Stream webStream = webClient.OpenRead("https://raw.githubusercontent.com/Sathh/YouTubeAV/master/YoutubeAV/Properties/AssemblyInfo.cs".ToString());
                 string[] LatestVersionArray = new StreamReader(webStream).ReadToEnd().Split(new[] { "AssemblyFileVersion(\"" }, StringSplitOptions.None);
                 string LatestVersionNumber = LatestVersionArray[1].Substring(0, LatestVersionArray[1].Length - 4);
                 return (ProductVersion != LatestVersionNumber);
