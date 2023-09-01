@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeAV", "YoutubeAV\YoutubeAV.csproj", "{3402EFF2-75F1-4D3B-91A9-F7B378C90121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeAV", "YoutubeAV2\YoutubeAV.csproj", "{3402EFF2-75F1-4D3B-91A9-F7B378C90121}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeAVUpdater", "YoutubeAVUpdater\YoutubeAVUpdater.csproj", "{EDC1FD0D-BE88-4013-A6AA-AEFB16DE1EC7}"
 EndProject
