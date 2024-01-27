@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Security;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace YoutubeAV
@@ -20,6 +21,10 @@ namespace YoutubeAV
         }
         private void Initial()
         {
+            if (File.Exists(@"ffmpeg.exe") == false)
+            {
+                DownloadFFMpeg();
+            }
             versionLabel.Text = "Verzia: " + ProductVersion;
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK)  
             {
@@ -52,11 +57,19 @@ namespace YoutubeAV
             }
             catch { }
         }
+        private static void DownloadFFMpeg()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                WebClient client = new WebClient();
+                client.DownloadFile("https://github.com/Sathh/YouTubeAV/raw/master/YoutubeAV2/ffmpeg.exe", @"ffmpeg.exe");
+            });
+        }
         private bool IsUpdateAvailable(string ProductVersion)
         {
             try
             {
-                Stream webStream = webClient.OpenRead("https://raw.githubusercontent.com/Sathh/YouTubeAV/master/YoutubeAV/Properties/AssemblyInfo.cs".ToString());
+                Stream webStream = webClient.OpenRead("https://raw.githubusercontent.com/Sathh/YouTubeAV/master/YoutubeAV2/Properties/AssemblyInfo.cs".ToString());
                 string[] LatestVersionArray = new StreamReader(webStream).ReadToEnd().Split(new[] { "AssemblyFileVersion(\"" }, StringSplitOptions.None);
                 string LatestVersionNumber = LatestVersionArray[1].Substring(0, LatestVersionArray[1].Length - 4);
                 return (ProductVersion != LatestVersionNumber);
@@ -64,8 +77,6 @@ namespace YoutubeAV
             catch { }
             return false;
         }
-
-
         private void ChangeSavePath(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
@@ -76,12 +87,10 @@ namespace YoutubeAV
             Path = folderBrowserDialog.SelectedPath;
             pathLabel.Text = Path;
         }
-
         private void OpenPathButton_Click(object sender, EventArgs e)
         {
             Process.Start(Path);
         }
-
         private void StartButton_Click(object sender, EventArgs e)
         {
             if (ConnectionChecker.Connection() == false)
@@ -107,10 +116,8 @@ namespace YoutubeAV
                 catch { }
             }
 
-
             string[] items = { textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text };
             TextBoxClear();
-
 
             if (radioButton720p.Checked == true && checkBoxKeepVideo.Checked == true)
             {
@@ -147,7 +154,6 @@ namespace YoutubeAV
                 }
                 return;
             }
-
 
             if (radioButtonHighest.Checked == true && checkBoxKeepVideo.Checked == true)
             {
@@ -220,9 +226,7 @@ namespace YoutubeAV
                 }
                 return;
             }
-
         }
-
         private void TextBoxClear()
         {
             textBox1.Text = "";
@@ -236,19 +240,16 @@ namespace YoutubeAV
         {
             Initial();
         }
-
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxOnlyVideo.Checked == true)
                 checkBoxOnlyVideo.Checked = false;
         }
-
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxKeepVideo.Checked == true)
                 checkBoxKeepVideo.Checked = false;
         }
-
         private void ManualConvButton_Click(object sender, EventArgs e)
         {
             openFileDialog = new OpenFileDialog
