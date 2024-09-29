@@ -131,10 +131,10 @@ namespace YoutubeAV
             this.radioButton720p.Checked = true;
             this.radioButton720p.Location = new System.Drawing.Point(12, 213);
             this.radioButton720p.Name = "radioButton720p";
-            this.radioButton720p.Size = new System.Drawing.Size(211, 17);
+            this.radioButton720p.Size = new System.Drawing.Size(108, 17);
             this.radioButton720p.TabIndex = 37;
             this.radioButton720p.TabStop = true;
-            this.radioButton720p.Text = "Stiahnuť v obyčajnej kvalite (max 720p)";
+            this.radioButton720p.Text = "Stiahnuť iba zvuk";
             this.radioButton720p.UseVisualStyleBackColor = true;
             // 
             // changeLocationButton

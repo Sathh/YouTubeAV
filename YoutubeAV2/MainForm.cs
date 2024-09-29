@@ -11,7 +11,9 @@ namespace YoutubeAV
 {
     public partial class MainForm : Form
     {
-        public static string Path = "";
+        public static string MainPath = "";
+        public static string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "YoutubeAVlog.txt");
+        private string HistoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Historia stahovania - YoutubeAV.txt");
         private static new string ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         private WebClient webClient = new WebClient();
 
@@ -31,8 +33,8 @@ namespace YoutubeAV
                 MessageBox.Show("Nebol vybraný žiadny priečinok", "Chyba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            Path = folderBrowserDialog.SelectedPath;
-            pathLabel.Text = Path;
+            MainPath = folderBrowserDialog.SelectedPath;
+            pathLabel.Text = MainPath;
             BringToFront();
             Activate();
             if (File.Exists(@"YoutubeAVUpdater.exe") == false)
@@ -84,12 +86,12 @@ namespace YoutubeAV
                 MessageBox.Show("Nebol vybraný žiadny priečinok");
                 return;
             }
-            Path = folderBrowserDialog.SelectedPath;
-            pathLabel.Text = Path;
+            MainPath = folderBrowserDialog.SelectedPath;
+            pathLabel.Text = MainPath;
         }
         private void OpenPathButton_Click(object sender, EventArgs e)
         {
-            Process.Start(Path);
+            Process.Start(MainPath);
         }
         private void StartButton_Click(object sender, EventArgs e)
         {
@@ -100,20 +102,23 @@ namespace YoutubeAV
             }
             if (historyChkBox.Checked == true)
             {
-                try
-                {
-                    if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrWhiteSpace(textBox1.Text))
-                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox1.Text + Environment.NewLine);
-                    if (!String.IsNullOrEmpty(textBox2.Text) && !String.IsNullOrWhiteSpace(textBox2.Text))
-                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox2.Text + Environment.NewLine);
-                    if (!String.IsNullOrEmpty(textBox3.Text) && !String.IsNullOrWhiteSpace(textBox3.Text))
-                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox3.Text + Environment.NewLine);
-                    if (!String.IsNullOrEmpty(textBox4.Text) && !String.IsNullOrWhiteSpace(textBox4.Text))
-                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox4.Text + Environment.NewLine);
-                    if (!String.IsNullOrEmpty(textBox5.Text) && !String.IsNullOrWhiteSpace(textBox5.Text))
-                        File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\Historia stahovania - YoutubeAV.txt", DateTime.Now.ToString() + "\t" + textBox5.Text + Environment.NewLine);
+                if (File.Exists(HistoryPath) == true)
+                    {
+                    try
+                    {
+                        if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrWhiteSpace(textBox1.Text))
+                            File.AppendAllText(HistoryPath, DateTime.Now.ToString() + "\t" + textBox1.Text + Environment.NewLine);
+                        if (!String.IsNullOrEmpty(textBox2.Text) && !String.IsNullOrWhiteSpace(textBox2.Text))
+                            File.AppendAllText(HistoryPath, DateTime.Now.ToString() + "\t" + textBox2.Text + Environment.NewLine);
+                        if (!String.IsNullOrEmpty(textBox3.Text) && !String.IsNullOrWhiteSpace(textBox3.Text))
+                            File.AppendAllText(HistoryPath, DateTime.Now.ToString() + "\t" + textBox3.Text + Environment.NewLine);
+                        if (!String.IsNullOrEmpty(textBox4.Text) && !String.IsNullOrWhiteSpace(textBox4.Text))
+                            File.AppendAllText(HistoryPath, DateTime.Now.ToString() + "\t" + textBox4.Text + Environment.NewLine);
+                        if (!String.IsNullOrEmpty(textBox5.Text) && !String.IsNullOrWhiteSpace(textBox5.Text))
+                            File.AppendAllText(HistoryPath, DateTime.Now.ToString() + "\t" + textBox5.Text + Environment.NewLine);
+                    }
+                    catch { }
                 }
-                catch { }
             }
 
             string[] items = { textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text };
@@ -267,13 +272,13 @@ namespace YoutubeAV
                 catch (SecurityException ex)
                 {
                     MessageBox.Show($"Nemáš oprávnenie.\n\nChybové hlásenie: {ex.Message}\n\n" + $"Detaily:\n\n{ex.StackTrace}");
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
+                    File.AppendAllText(MainForm.LogFilePath, Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
+                    File.AppendAllText(MainForm.LogFilePath, Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
                 }
             }
             else

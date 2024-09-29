@@ -42,7 +42,7 @@ namespace YoutubeAV
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
                 this.statusStatusLabel.Text = "Prekladanie názvu";
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(Videolink);
-                var savePath = MainForm.Path + "/";
+                var savePath = MainForm.MainPath + "/";
                 var audioStreamInfo = streamManifest.GetAudioStreams().GetWithHighestBitrate();
                 IVideoStreamInfo videoStreamInfo;
                 if (Only1080p == true)

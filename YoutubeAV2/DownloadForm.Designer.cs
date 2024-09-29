@@ -89,9 +89,9 @@ namespace YoutubeAV
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Rozmery:";
+            this.label1.Text = "Bitrate:";
             // 
             // resolutionLabel
             // 

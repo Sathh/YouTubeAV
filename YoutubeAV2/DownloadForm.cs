@@ -12,13 +12,13 @@ namespace YoutubeAV
     {
         private string Videolink { get; set; }
         private bool Converting { get; set; }
-        private bool DeleteAfterConverting { get; set; }
+        //private bool DeleteAfterConverting { get; set; }
         public DownloadForm(string videolink, bool converting, bool deleteAfterConverting)
         {
             InitializeComponent();
             this.Videolink = videolink;
             this.Converting = converting;
-            this.DeleteAfterConverting = deleteAfterConverting;
+            //this.DeleteAfterConverting = deleteAfterConverting;
             DownloadSD();
         }
         CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
@@ -37,12 +37,13 @@ namespace YoutubeAV
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
                 this.statusStatusLabel.Text = "Prekladanie názvu";
                 var streamManifest = await client.Videos.Streams.GetManifestAsync(Videolink);
-                var savePath = MainForm.Path + "/";
+                var savePath = MainForm.MainPath + "/";
                 try
                 {
                     this.statusStatusLabel.Text = "Sťahovanie";
-                    var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-                    this.resolutionLabel.Text = streamInfo.VideoResolution.ToString();
+                    //var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+                    var streamInfo = streamManifest.GetAudioStreams().GetWithHighestBitrate();
+                    this.resolutionLabel.Text = streamInfo.Bitrate.ToString();
                     this.durationLabel.Text = video.Duration.ToString();
                     this.fileSizeLabel.Text = streamInfo.Size.ToString();
                     var ext = streamInfo.Container.Name;
@@ -62,6 +63,7 @@ namespace YoutubeAV
                             return;
                         }
                     }
+                    
                     if (streamInfo != null)
                     {
                         var stream = await client.Videos.Streams.GetAsync(streamInfo);
@@ -80,7 +82,8 @@ namespace YoutubeAV
                         {
                             this.Text = "Konvertujem " + title;
                             this.statusStatusLabel.Text = "Konvertujem";
-                            var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", DeleteAfterConverting));
+                            //var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", DeleteAfterConverting));
+                            var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", true));
                             if (ex.ConversionDone == true)
                             {
                                 this.Close();
@@ -92,10 +95,11 @@ namespace YoutubeAV
                             this.Close();
                         }
                     }
+                    
                 }
                 catch (Exception ex)
                 {
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
+                    File.AppendAllText(MainForm.LogFilePath, Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
                     MessageBox.Show("Chyba sťahovania: " + ex.Message.ToString(), newtitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                 }
@@ -103,7 +107,7 @@ namespace YoutubeAV
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Chyba!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\documents\YoutubeAVlog.txt", Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
+                File.AppendAllText(MainForm.LogFilePath, Convert.ToString(DateTime.Now) + Environment.NewLine + ex.Message.ToString() + Environment.NewLine + Environment.NewLine);
                 this.Close();
             }
         }

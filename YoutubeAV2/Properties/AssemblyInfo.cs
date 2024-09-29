@@ -21,5 +21,5 @@ using System.Runtime.InteropServices;
 //      Build Version
 //      Month
 //      Day of month
-[assembly: AssemblyVersion("1.24.9.29")]
-[assembly: AssemblyFileVersion("1.24.9.29")]
+[assembly: AssemblyVersion("1.24.9.30")]
+[assembly: AssemblyFileVersion("1.24.9.30")]
