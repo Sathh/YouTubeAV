@@ -1,47 +1,68 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace YoutubeAVUpdater
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Uri uri = new Uri("https://github.com/Sathh/YouTubeAV/releases/download/1.21/YoutubeAV.exe");
-            WebClient webClient = new WebClient();
-            webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(WebClient_DownloadFileCompleted);
-            webClient.DownloadFileAsync(uri, @"TEMPYoutubeAV.exe");
-            Console.ReadKey();
-        }
+            string updateUrl = "https://github.com/Sathh/YouTubeAV/releases/download/1.21/YoutubeAV.exe";
 
-        private static void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            if (e.Cancelled)
-            {
-                Console.WriteLine("Stahovanie bolo zrusene.");
-            }
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string tempFile = Path.Combine(currentDirectory, "TEMPYoutubeAV.exe");
+            string targetFile = Path.Combine(currentDirectory, "YoutubeAV.exe");
+            string backupFile = Path.Combine(currentDirectory, "YoutubeAV_backup.exe");
 
-            if (e.Error != null)
+            Console.WriteLine("File will be downloaded to: " + targetFile);
+            Console.WriteLine();
+
+            try
             {
-                Console.WriteLine(e.Error.ToString());
-                Console.WriteLine("Chyba stahovania");
-            }
-            else
-            {
-                File.Replace("TEMPYoutubeAV.exe", "YoutubeAV.exe", "YoutubeAV_backup.exe");
-                Process.Start(@"YoutubeAV.exe");
-                if (Process.GetProcessesByName("YoutubeAV") != null)
+                using (WebClient webClient = new WebClient())
                 {
-                    Environment.Exit(0);
+                    webClient.DownloadProgressChanged += (sender, e) =>
+                    {
+                        Console.Write($"\rDownloaded: {e.ProgressPercentage}%   ");
+                    };
+
+                    Console.WriteLine("Downloading update...");
+                    await webClient.DownloadFileTaskAsync(new Uri(updateUrl), tempFile);
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("Download completed.");
+
+                if (File.Exists(targetFile))
+                {
+                    File.Replace(tempFile, targetFile, backupFile, true);
                 }
                 else
                 {
-                    Console.WriteLine("Chyba spustenia aplikacie");
-                    Console.ReadKey();
+                    File.Move(tempFile, targetFile);
                 }
+
+                Process process = Process.Start(targetFile);
+                if (process != null)
+                {
+                    Console.WriteLine("Application started successfully.");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Error starting the application.");
+                }
+            }
+            catch (WebException webEx)
+            {
+                Console.WriteLine("Download error: " + webEx.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
     }
