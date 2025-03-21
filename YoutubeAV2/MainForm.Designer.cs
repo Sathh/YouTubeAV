@@ -37,7 +37,7 @@ namespace YoutubeAV
             this.checkBoxOnlyVideo = new System.Windows.Forms.CheckBox();
             this.checkBoxKeepVideo = new System.Windows.Forms.CheckBox();
             this.radioButtonHighest = new System.Windows.Forms.RadioButton();
-            this.radioButton720p = new System.Windows.Forms.RadioButton();
+            this.radioButtonOnlyAudio = new System.Windows.Forms.RadioButton();
             this.changeLocationButton = new System.Windows.Forms.Button();
             this.pathLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -102,6 +102,7 @@ namespace YoutubeAV
             this.checkBoxOnlyVideo.TabIndex = 40;
             this.checkBoxOnlyVideo.Text = "Stiahnuť len video";
             this.checkBoxOnlyVideo.UseVisualStyleBackColor = true;
+            this.checkBoxOnlyVideo.Visible = false;
             this.checkBoxOnlyVideo.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
             // checkBoxKeepVideo
@@ -113,6 +114,7 @@ namespace YoutubeAV
             this.checkBoxKeepVideo.TabIndex = 39;
             this.checkBoxKeepVideo.Text = "Stiahnuť aj video";
             this.checkBoxKeepVideo.UseVisualStyleBackColor = true;
+            this.checkBoxKeepVideo.Visible = false;
             this.checkBoxKeepVideo.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // radioButtonHighest
@@ -124,18 +126,20 @@ namespace YoutubeAV
             this.radioButtonHighest.TabIndex = 38;
             this.radioButtonHighest.Text = "Stiahnuť v najvyššej kvalite";
             this.radioButtonHighest.UseVisualStyleBackColor = true;
+            this.radioButtonHighest.CheckedChanged += new System.EventHandler(this.radioButtonHighest_CheckedChanged);
             // 
-            // radioButton720p
+            // radioButtonOnlyAudio
             // 
-            this.radioButton720p.AutoSize = true;
-            this.radioButton720p.Checked = true;
-            this.radioButton720p.Location = new System.Drawing.Point(12, 213);
-            this.radioButton720p.Name = "radioButton720p";
-            this.radioButton720p.Size = new System.Drawing.Size(108, 17);
-            this.radioButton720p.TabIndex = 37;
-            this.radioButton720p.TabStop = true;
-            this.radioButton720p.Text = "Stiahnuť iba zvuk";
-            this.radioButton720p.UseVisualStyleBackColor = true;
+            this.radioButtonOnlyAudio.AutoSize = true;
+            this.radioButtonOnlyAudio.Checked = true;
+            this.radioButtonOnlyAudio.Location = new System.Drawing.Point(12, 213);
+            this.radioButtonOnlyAudio.Name = "radioButtonOnlyAudio";
+            this.radioButtonOnlyAudio.Size = new System.Drawing.Size(108, 17);
+            this.radioButtonOnlyAudio.TabIndex = 37;
+            this.radioButtonOnlyAudio.TabStop = true;
+            this.radioButtonOnlyAudio.Text = "Stiahnuť iba zvuk";
+            this.radioButtonOnlyAudio.UseVisualStyleBackColor = true;
+            this.radioButtonOnlyAudio.CheckedChanged += new System.EventHandler(this.radioButtonOnlyAudio_CheckedChanged);
             // 
             // changeLocationButton
             // 
@@ -226,6 +230,7 @@ namespace YoutubeAV
             this.radioButton1080p.TabStop = true;
             this.radioButton1080p.Text = "Stiahnuť v 1080p kvalite";
             this.radioButton1080p.UseVisualStyleBackColor = true;
+            this.radioButton1080p.CheckedChanged += new System.EventHandler(this.radioButton1080p_CheckedChanged);
             // 
             // MainForm
             // 
@@ -241,7 +246,7 @@ namespace YoutubeAV
             this.Controls.Add(this.checkBoxOnlyVideo);
             this.Controls.Add(this.checkBoxKeepVideo);
             this.Controls.Add(this.radioButtonHighest);
-            this.Controls.Add(this.radioButton720p);
+            this.Controls.Add(this.radioButtonOnlyAudio);
             this.Controls.Add(this.changeLocationButton);
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.label1);
@@ -271,7 +276,7 @@ namespace YoutubeAV
         private System.Windows.Forms.CheckBox checkBoxOnlyVideo;
         private System.Windows.Forms.CheckBox checkBoxKeepVideo;
         private System.Windows.Forms.RadioButton radioButtonHighest;
-        private System.Windows.Forms.RadioButton radioButton720p;
+        private System.Windows.Forms.RadioButton radioButtonOnlyAudio;
         private System.Windows.Forms.Button changeLocationButton;
         private System.Windows.Forms.Label pathLabel;
         private System.Windows.Forms.Label label1;

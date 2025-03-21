@@ -11,14 +11,10 @@ namespace YoutubeAV
     public partial class DownloadForm : Form
     {
         private string Videolink { get; set; }
-        private bool Converting { get; set; }
-        //private bool DeleteAfterConverting { get; set; }
-        public DownloadForm(string videolink, bool converting, bool deleteAfterConverting)
+        public DownloadForm(string videolink)
         {
             InitializeComponent();
             this.Videolink = videolink;
-            this.Converting = converting;
-            //this.DeleteAfterConverting = deleteAfterConverting;
             DownloadSD();
         }
         CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
@@ -30,8 +26,8 @@ namespace YoutubeAV
                 this.Show();
                 this.statusStatusLabel.Text = "Inicializácia";
                 var client = new YoutubeClient();
-                var video = await client.Videos.GetAsync(this.Videolink); //https://www.youtube.com/watch?v=bnsUkE8i0tU
-                var title = video.Title; // "Infected Mushroom - Spitfire [Monstercat Release]"
+                var video = await client.Videos.GetAsync(this.Videolink);
+                var title = video.Title;
                 this.nameNameLabel.Text = title;
                 var invalids = System.IO.Path.GetInvalidFileNameChars(); 
                 var newtitle = String.Join("_", title.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
@@ -63,7 +59,7 @@ namespace YoutubeAV
                             return;
                         }
                     }
-                    
+
                     if (streamInfo != null)
                     {
                         var stream = await client.Videos.Streams.GetAsync(streamInfo);
@@ -78,24 +74,25 @@ namespace YoutubeAV
                         });
                         await client.Videos.Streams.DownloadAsync(streamInfo, savePath + newtitle + $".{ext}", progress, cancelTokenSource.Token);
                         string source = (savePath + newtitle + $".{ext}");
-                        if (Converting == true)
+
+                        this.Text = "Konvertujem " + title;
+                        this.statusStatusLabel.Text = "Konvertujem";
+                        //var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", DeleteAfterConverting));
+                        var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", true));
+                        if (ex.ConversionDone == true)
                         {
-                            this.Text = "Konvertujem " + title;
-                            this.statusStatusLabel.Text = "Konvertujem";
-                            //var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", DeleteAfterConverting));
-                            var ex = await Task.Run(() => new Extractor(savePath + newtitle + $".{ext}", true));
-                            if (ex.ConversionDone == true)
+                            string badFileName = savePath + newtitle + $".{ext}.mp3";
+                            if (System.IO.File.Exists(badFileName) == true)
                             {
-                                this.Close();
+                                if (badFileName.EndsWith(".webm.mp3"))
+                                {
+                                    string newFileName = badFileName.Replace(".webm.mp3", ".mp3");
+                                    File.Move(badFileName, newFileName);
+                                }
                             }
-                        }
-                        if (Converting == false)
-                        {
-                            this.statusStatusLabel.Text = "Dokončené";
                             this.Close();
                         }
                     }
-                    
                 }
                 catch (Exception ex)
                 {

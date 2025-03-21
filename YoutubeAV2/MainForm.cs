@@ -124,37 +124,13 @@ namespace YoutubeAV
             string[] items = { textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text };
             TextBoxClear();
 
-            if (radioButton720p.Checked == true && checkBoxKeepVideo.Checked == true)
+            if (radioButtonOnlyAudio.Checked == true)
             {
                 foreach (string s in items)
                 {
                     if (String.IsNullOrWhiteSpace(s) == false)
                     {
-                        DownloadForm df = new DownloadForm(s, true, false);
-                    }
-                }
-                return;
-            }
-
-            if (radioButton720p.Checked == true && checkBoxOnlyVideo.Checked == true)
-            {
-                foreach (string s in items)
-                {
-                    if (String.IsNullOrWhiteSpace(s) == false)
-                    {
-                        DownloadForm df = new DownloadForm(s, false, false);
-                    }
-                }
-                return;
-            }
-
-            if (radioButton720p.Checked == true && checkBoxKeepVideo.Checked == false && checkBoxOnlyVideo.Checked == false)
-            {
-                foreach (string s in items)
-                {
-                    if (String.IsNullOrWhiteSpace(s) == false)
-                    {
-                        DownloadForm df = new DownloadForm(s, true, true);
+                        DownloadForm df = new DownloadForm(s);
                     }
                 }
                 return;
@@ -284,6 +260,33 @@ namespace YoutubeAV
             else
             {
                 return;
+            }
+        }
+
+        private void radioButton1080p_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButton1080p.Checked == true)
+            {
+                checkBoxKeepVideo.Visible = true;
+                checkBoxOnlyVideo.Visible = true;
+            }
+        }
+
+        private void radioButtonHighest_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonHighest.Checked == true)
+            {
+                checkBoxKeepVideo.Visible = true;
+                checkBoxOnlyVideo.Visible = true;
+            }
+        }
+
+        private void radioButtonOnlyAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonOnlyAudio.Checked == true)
+            {
+                checkBoxKeepVideo.Visible = false;
+                checkBoxOnlyVideo.Visible = false;
             }
         }
     }
